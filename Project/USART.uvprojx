@@ -638,11 +638,6 @@
           <GroupName>USER</GroupName>
           <Files>
             <File>
-              <FileName>mian.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\mian.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\User\stm32f4xx_conf.h</FilePath>
@@ -672,15 +667,20 @@
               <FileType>1</FileType>
               <FilePath>..\User\bsp_key\bsp_key.c</FilePath>
             </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\main.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>DOC</GroupName>
           <Files>
             <File>
-              <FileName>ReadMe.txt</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Doc\ReadMe.txt</FilePath>
+              <FileName>Readme.md</FileName>
+              <FileType>9</FileType>
+              <FilePath>..\Readme.md</FilePath>
             </File>
           </Files>
         </Group>

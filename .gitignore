@@ -124,6 +124,8 @@ dkms.conf
 
 # Generated output files
 /Listing/*
+/Libraries/*
+/Project/DebugConfig/*
 
 # Debugger files
 # define exception below if needed

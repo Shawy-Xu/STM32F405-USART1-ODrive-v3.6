@@ -21,9 +21,9 @@ GPIO2:RX 端口
 
 硬件连接：PA9接GPIO2,PA10接GPIO1，GND接GND。如图：
 
- ![野火开发板接线图](./../The%20actual%20demo/野火板子接线图.jpg)
+![野火接线图](\Actual-demo\野火接线图.jpg "野火开发板接线图")
 
- ![ODrive开发板接线图](./../The%20actual%20demo/ODrive接线图.jpg)
+![ODrive接线](\Actual-demo\ODrive接线.jpg "ODrive接线图")
 
 ### 核心代码
 
@@ -96,7 +96,7 @@ GPIO2:RX 端口
 ```
 实际实验效果：
 
-<video id="video" controls="" preload="none" poster="D:\Technics\RealTimeOperateSystem\TeamProject\STM32F407-ODrive-version1\The actual demo\封面.png">
-<source id="mp4" src="D:\Technics\RealTimeOperateSystem\TeamProject\STM32F407-ODrive-version1\The actual demo\按键控制电机转动.mp4" type="video/mp4">
+<video id="video" controls="" preload="none" poster="/Actual-demo/第一图.png">
+<source id="mp4" src="/Actual-demo/按键控制.mp4" type="video/mp4">
 </video>
 

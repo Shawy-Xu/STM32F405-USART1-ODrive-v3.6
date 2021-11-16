@@ -145,30 +145,45 @@ type="video/mp4">
 
 ### 主函数 main.c
 `Debug_USART_Config();` USART1串口初始化
+
 `LED_GPIO_Config();` LED端口初始化
+
 `Key_GPIO_Config();` 按键端口初始化
 
 初始化完成之后就进入主循环
 
 **电机0**和**电机1**分别拥有两个状态：**状态0** 和 **状态1**
+
 因为电机采用`位置控制模式`，所以发送的命令为**位置指令**，
+
 指令具体命令含义请参考：`ASCII格式协议中文版.pdf`（位于 **/Doc/RefersData** 文件夹）
+
 **电机0状态0**：LED显示`紫色`，`电机0`处于`0`位置
+
 **电机0状态1**：LED显示`黄色`，`电机0`处于`50`位置
+
 **电机1状态0**：LED显示`青色`，`电机1`处于`0`位置
+
 **电机1状态1**：LED显示`白色`，`电机1`处于`50`位置
 
 轮询扫描按键变化
+
 `按键1`负责控制`电机0`状态转换
+
 `按键2`负责控制`电机1`状态转换
 
 ### 按键配置 bsp_key
 #### bsp_key.h
 按键配置头文件
+
 **GPIO分组**：`GPIOA`组（按键1），`GPIOC`组（按键2）
+
 **GPIO引脚**：`GPIO_Pin_0` 按键1引脚，`GPIO_Pin_13` 按键2引脚
+
 **使能时钟**：`RCC_AHB1Periph_GPIOA`（按键1时钟使能），   `RCC_AHB1Periph_GPIOC`（按键2时钟使能）
+
 **按键引脚相关请参考**：`[野火EmbedFire]《STM32库开发实战指南——基于野火霸天虎开发板》—20210122.pdf` **第13章 GPIO输入——按键检测**，
+
 以及`2-STM32F407英文数据手册（没有中文）.pdf` 第3节：**3 Pinouts and pin description**
 
 #### bsp_key.c
@@ -179,40 +194,64 @@ type="video/mp4">
 ### LED配置 bsp_led
 #### bsp_led.h
 LED配置头文件
+
 **GPIO分组**：`GPIOF`组
+
 **GPIO引脚**：`GPIO_Pin_6` LED1引脚，`GPIO_Pin_7` LED2引脚，`GPIO_Pin_8` LED3引脚
+
 **使能时钟**：`RCC_AHB1Periph_GPIOF`
+
 **LED引脚相关请参考**：`[野火EmbedFire]《STM32库开发实战指南——基于野火霸天虎开发板》—20210122.pdf` **第12章 GPIO输出——使用固件库点亮LED**，
+
 以及`2-STM32F407英文数据手册（没有中文）.pdf` 第3节：**3 Pinouts and pin description**
+
 头文件利用直接操作寄存器的方式控制LED，利用三个LED灯的亮灭来显示不同的颜色，并给每个LED灯的颜色一个宏定义，方便直接调用。
 
 #### bsp_led.c
 LED配置具体实现程序
 调用STM32F407的官方库函数来**初始化LED灯（LED_GPIO_Config）**。
+
 详细内容参考源代码
 
 ### USART串口通信配置 bsp_debug_usart
 #### bsp_debug_usart.h
 USART1串口通信配置头文件
+
 **GPIO分组**：`GPIOA`组
+
 **GPIO引脚**：`GPIO_Pin_10` USART1接收端口引脚， `GPIO_Pin_9` UASART1发送端口引脚
+
 **GPIO引脚源**：`GPIO_PinSource10` USART1接收端口引脚源，`GPIO_PinSource9` USART1发送端口引脚源
+
 **使能时钟**：`RCC_APB2Periph_USART1`（接收端口和发送端口都为此时钟源）
+
 **USART传输速率**：`115200`
+
 **USART串口通信相关请参考**：`[野火EmbedFire]《STM32库开发实战指南——基于野火霸天虎开发板》—20210122.pdf` **第21章 USART——串口通信**，
+
 以及`2-STM32F407英文数据手册（没有中文）.pdf` 第3节：**3 Pinouts and pin description**
+
 头文件定义了USART1串口的发送端端口和接收端端口的基本参数，并规定了传输的速率，方便后续的调试移植。
 
 ### bsp_debug_usart.c
 USART1串口通信配置实现函数
+
 USART1串口通信使用中断方式来传输数据
+
 `NVIC_Configuration()`函数：向量中断配置函数。配置USART为中断源，抢断优先级为1，子优先级为1
+
 `Debug_USART_Config()`函数：初始化USART串口通信。配置GPIO串口的速度为`50MHz`（高速），通信的波特率为`115200`，数据位加校验位的字长为`8`，停止位为`1`（1个停止位），不使用校验，硬件流控制，同时能接收和发送。
+
 `Usart_SendByte()`函数：利用USART通信发送一个字符。
+
 `Usart_SendString()`函数：利用USART通信发送字符串。
+
 `Usart_SendHalfWord()`函数：利用USART通信发送一个16位数。
+
 `fputc()`函数：重定向c库函数printf到串口，重定向后可使用printf函数直接发送数据给ODrive。
+
 `fgetc()`函数：重定向c库函数scanf到串口，重定向后可使用scanf、getchar等函数。
+
 具体配置过程以及详细内容参考源代码。
 
 ### stm32f4xx_it.c 中断配置文件

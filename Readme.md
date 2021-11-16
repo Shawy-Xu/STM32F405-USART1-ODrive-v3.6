@@ -25,6 +25,7 @@ GPIO2:RX 端口
 
 ![ODrive接线](\Actual-demo\ODrive接线.jpg "ODrive接线图")
 
+注意：原来的野火STM32开发板上USART1串口的PA9和PA10接口直接用跳帽连接了RX和TX接口（打印输出到电脑上位机的串口调试助手），连接时需要拔掉。
 ### 核心代码
 
 ```C
@@ -96,7 +97,8 @@ GPIO2:RX 端口
 ```
 实际实验效果：
 
-<video id="video" controls="" preload="none" poster="/Actual-demo/第一图.png">
-<source id="mp4" src="/Actual-demo/按键控制.mp4" type="video/mp4">
+<video id="video" controls="" preload="none" poster="D:\Technics\RealTimeOperateSystem\TeamProject\STM32F407-ODrive-v1.0\Actual-demo\第一图.png">
+<source id="mp4" src="D:\Technics\RealTimeOperateSystem\TeamProject\STM32F407-ODrive-v1.0\Actual-demo\按键控制.mp4" 
+type="video/mp4">
 </video>
 
